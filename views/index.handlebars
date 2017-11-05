@@ -2,7 +2,7 @@
 
 	<div class="row">
 		<div class="col-md-12">
-			<img src="../public/assets/img/burger.png" alt="burger" class="img-responsive center-block">
+			<img src="/assets/img/burger.png" alt="burger" class="img-responsive center-block">
 		</div>
 	</div>
 
@@ -16,10 +16,16 @@
 		<div class="col-md-5">
 			<ul>
 				{{#each burgers}}
-				<li>
-					<p>ID: {{this.id}}</p>
-					<p>Burger: {{this.burger}}</p>
-				</li>
+				{{#unless devoured}}
+				<form action="burger/eat/{{id}}" method="POST">
+					<div class="input-group">
+						<li class="form-control">{{id}}. {{burger_name}}</li>
+						<span class="input-group-btn">
+							<button class="btn btn-secondary devour-button" type="submit">Devour It!</button>
+						</span>
+					</div>
+				</form>
+				{{/unless}}
 				{{/each}}
 			</ul>
 		</div>
@@ -29,10 +35,14 @@
 		<div class="col-md-5">
 			<ul>
 				{{#each burgers}}
-				<li>
-					<p>ID: {{this.id}}</p>
-					<p>Burger: {{this.burger}}</p>
-				</li>
+				{{#if this.devoured}}
+				<div class="input-group">
+					<li class="form-control">{{this.id}}. {{this.burger_name}}</li>
+					{{!-- <span class="input-group-btn">
+						<button class="btn btn-info whine-button" type="button">Whine!</button>
+					</span> --}}
+				</div>
+				{{/if}}
 				{{/each}}
 			</ul>
 		</div>
@@ -42,9 +52,9 @@
 		<div class="col-md-12 text-center">
 			<form action="/" method="POST">
 				<textarea type="text" name="burger"></textarea>
-
-				<button type="submit">Submit</button>
 			</form>
+			<button type="button" class="btn btn-primary">Submit</button>
+			<p> Enter the name of the burger you want to eat & click the submit button. </p>
 		</div>
 	</div>
 	
