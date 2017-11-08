@@ -13,16 +13,11 @@ var app = express();
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
-// // app.use(express.static(__dirname + '/images'));
 
-// app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.text());
-// app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
-// var exphbs = require('express-handlebars');
 
 // app.use(methodOverride('_method'));
 
@@ -40,7 +35,5 @@ app.get("/", function(req, res) {
   });
 
 app.use("/api/burgers", burgerController);
-// var routes = require('./controllers/burgers_controller.js');
-// app.use('/', routes);
 
 app.listen(PORT);

@@ -26,7 +26,7 @@ $(function(){
 
 		var newBurger = {
 			name: $("#burger").val().trim(),
-			//devoured: false
+			//devoured: false - not needed, sql database auto default is false
 		};
 
 	    // Send the POST request.

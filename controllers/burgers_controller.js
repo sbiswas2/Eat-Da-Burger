@@ -2,34 +2,19 @@ var express = require("express");
 var router = express.Router();
 var burger = require("../models/burger.js");
 
-// // index redirect
-// router.get('/', function(req, res){
-// 	res.redirect('/index');
-// });
-// // index page
-// router.get('/index', function(req, res){
-// 	burger.selectAll(function(data){
-// 		res.render('index', {burgers: data});
-// 	});
-// });
-// // create burger
+// create burger
 router.post("/", function(req, res) {
   burger.insertOne([
-    req.body.name//, req.body.devoured
+    req.body.name
   ], function(result) {
     // Send back the ID of the new quote
     res.json({ id: result.insertId });
   });
 });
-// router.post('/burgers/insertOne', function(req, res){
-// 	burger.insertOne(['burger_name', 'devoured'], [req.body.name, false], function(){
-// 		res.redirect('/index');
-// 	});
-// });
-// // devour burger
+
+// devour burger
 router.put("/:id", function(req, res) {
   var condition = "id = " + req.params.id;
-
   console.log("condition", condition);
 
   burger.updateOne({
@@ -43,14 +28,8 @@ router.put("/:id", function(req, res) {
     }
   });
 });
-// router.put('/burgers/updateOne/:id', function(req, res){
-// 	var condition = 'id = ' + req.params.id;
-// 	burger.updateOne({devoured: req.body.devoured}, condition, function(){
-// 		res.redirect('/index');
-// 	});
-// });
 
-// // delete burger?
+// delete burger
 router.delete("/:id", function(req, res) {
   var condition = "id = " + req.params.id;
 
