@@ -1,12 +1,12 @@
-var connection = require('./connection.js');
+var connection = require("../config/connection.js");
 
-// function printQuestionMarks(num) {
-//   var arr = [];
-//   for (var i = 0; i < num; i++) {
-//     arr.push("?");
-//   }
-//   return arr.toString();
-// };
+function printQuestionMarks(num) {
+  var arr = [];
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+  return arr.toString();
+};
 
 // function objToSql(ob) {
 //   var arr = [];
@@ -31,16 +31,14 @@ var orm = {
 		});
 	},
 
-	insertOne: function(tableInput, column, value, callback){
-		var queryString = "INSERT INTO " + tableInput;
-		queryString += ' (';
-		queryString += column.toString();
-		queryString += ') ';
-		queryString += 'VALUES (';
-		queryString += printQuestionMarks(value.length);
-		queryString += ') ';
+	insertOne: function(tableInput, column, callback){
+		var name = column.toString();
+		console.log(name);
+		var queryString = "INSERT INTO " + tableInput + "(burger_name, devoured) VALUES ( '" + name + "', false);"
 
-		connection.query(queryString, value, function(error, result){
+		console.log(queryString);
+
+		connection.query(queryString, function(error, result){
 			if (error) throw error;
 			callback(result);
 		});
@@ -48,16 +46,29 @@ var orm = {
 
 	updateOne: function(tableInput, columnValue, condition, callback){
 		var queryString = "UPDATE " + tableInput;
-		queryString += ' SET ';
-		queryString += objToSql(columnValue); //objToSql(columnValue);
+		queryString += ' SET devoured = true';
+		// queryString += objToSql(columnValue); //objToSql(columnValue);
 		queryString += ' WHERE ';
 		queryString += condition;
+
+		console.log(queryString);
 
 		connection.query(queryString, function(error, result){
 			if (error) throw error;
 			callback(result);
 		});
 	},
+
+	deleteOne: function(tableInput, condition, callback) {
+    var queryString = "DELETE FROM " + tableInput;
+    queryString += " WHERE ";
+    queryString += condition;
+
+    connection.query(queryString, function(error, result) {
+      		if (error) throw error;
+			callback(result);
+    });
+  }
 };
 
 module.exports = orm;

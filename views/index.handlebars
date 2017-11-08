@@ -17,14 +17,11 @@
 			<ul>
 				{{#each burgers}}
 				{{#unless devoured}}
-				<form action="burgers/updateOne/{{id}}?_method=PUT" method="POST">
-					<div class="input-group">
-						<li class="form-control">{{id}}. {{burger_name}}</li>
-						<span class="input-group-btn">
-							<button class="btn btn-secondary devour-button" type="submit">Devour It!</button>
-						</span>
-					</div>
-				</form>
+					<li>
+						{{id}}.
+						{{burger_name}}
+						<button class="devour" data-id="{{id}}">Devour It!</button>
+					</li>
 				{{/unless}}
 				{{/each}}
 			</ul>
@@ -35,12 +32,11 @@
 		<div class="col-md-5">
 			<ul>
 				{{#each burgers}}
-				{{#if this.devoured}}
-				<div class="input-group">
-					<li class="form-control">{{id}}. {{burger_name}}</li>
-					{{!-- <span class="input-group-btn">
-						<button class="btn btn-info whine-button" type="button">Whine!</button>
-					</span> --}}
+				{{#if devoured}}
+					<li class="devoured">
+						{{id}}.
+						{{burger_name}}
+					</li>
 				</div>
 				{{/if}}
 				{{/each}}
@@ -50,11 +46,15 @@
 	
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<form action="burger/insertOne" method="POST">
-				<textarea type="text" name="burger"></textarea>
+			<form id="add-burger">
+
+				<div class="form-group">
+					<textarea id="burger" name="burger" rows="5" cols="40"></textarea>
+				</div>
+
+				<button type="submit" id="submit-btn">Submit</button>
+
 			</form>
-			<button type="button" class="btn btn-primary">Submit</button>
-			<p> Enter the name of the burger you want to eat & click the submit button. </p>
 		</div>
 	</div>
 	
