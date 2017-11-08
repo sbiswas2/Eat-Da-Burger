@@ -14,14 +14,14 @@
 	
 	<div class="row">
 		<div class="col-md-5">
-			<ul>
+			<ul class="list-group">
 				{{#each burgers}}
 				{{#unless devoured}}
-					<li>
+					<li class="list-group-item">
 						{{id}}.
 						{{burger_name}}
-						<button class="devour" data-id="{{id}}">Devour It!</button>
 					</li>
+					<button class="devour btn btn-secondary" data-id="{{id}}">Devour It!</button>
 				{{/unless}}
 				{{/each}}
 			</ul>
@@ -30,15 +30,14 @@
 		<div class="col-md-2"></div>
 
 		<div class="col-md-5">
-			<ul>
+			<ul class="list-group">
 				{{#each burgers}}
 				{{#if devoured}}
-					<li class="devoured">
+					<li class="list-group-item disabled">
 						{{id}}.
 						{{burger_name}}
-						<button class="delete-burger" data-id="{{id}}">Throw It Away!</button>
 					</li>
-				</div>
+					<button class="delete-burger btn btn-secondary" data-id="{{id}}">Throw It Away!</button>
 				{{/if}}
 				{{/each}}
 			</ul>
@@ -48,14 +47,12 @@
 	<div class="row">
 		<div class="col-md-12 text-center">
 			<form id="add-burger">
-
 				<div class="form-group">
 					<textarea id="burger" name="burger" rows="5" cols="40"></textarea>
 				</div>
-
-				<button type="submit" id="submit-btn">Submit</button>
-
+				<button class="btn btn-primary" type="submit" id="submit-btn">Submit</button>
 			</form>
+			<p class="h4"> Enter the name of the burger you want to eat & click the submit button.</p>
 		</div>
 	</div>
 	
