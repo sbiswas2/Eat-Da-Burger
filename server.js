@@ -7,7 +7,7 @@ var burgerController = require("./controllers/burgers_controller.js");
 // Import the model (burger.js) to use its database functions.
 var burger = require("./models/burger.js");
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3306;
 
 var app = express();
 
