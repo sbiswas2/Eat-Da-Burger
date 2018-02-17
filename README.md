@@ -23,7 +23,7 @@ Eat-Da-Burger is an app that simulates the status of eating your burger at a res
 1.  Create a MySQL database called *burgers_db*
 2.  Create a table within database called *burgers*
 3.  Clone repo
-4.  Navigate into project `cd eat-da-burger`
+4.  Navigate into project `cd Eat-Da-Burger`
 5.  Install node packages `npm install`
 6.  Run the server on your terminal `node server.js`
 7.  Navigate to localhost:3306 on your browser
